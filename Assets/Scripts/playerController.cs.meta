@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: dc8be74e71e64534b81ffb789cb3d246
+timeCreated: 1509557344
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - groundCheck: {instanceID: 0}
+  - handTip: {instanceID: 0}
+  - boomerang: {fileID: 1981558109922106, guid: 8afd34df3abd5cf4ab5157a8d5ef1fe1,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
