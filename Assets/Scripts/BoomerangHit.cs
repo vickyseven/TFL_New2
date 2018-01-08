@@ -30,7 +30,7 @@ public class BoomerangHit : MonoBehaviour {
             Destroy(gameObject);
             if(other.tag == "Enemy")
             {
-                BoarHealth enemyDamage = other.gameObject.GetComponent<BoarHealth>();
+                EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
                 enemyDamage.addDamage(WeaponDamage);
             }
             }
@@ -46,7 +46,7 @@ public class BoomerangHit : MonoBehaviour {
             Destroy(gameObject);
             if (other.tag == "Enemy")
             {
-                BoarHealth enemyDamage = other.gameObject.GetComponent<BoarHealth>();
+                EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
                 enemyDamage.addDamage(WeaponDamage);
             }
         }
