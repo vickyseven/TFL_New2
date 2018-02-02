@@ -24,10 +24,19 @@ public class EnemyDamage : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag=="Player" && nextDamage < Time.time)
+        if (other.tag == "Player" && nextDamage < Time.time)
         {
-            playerHealth thePlayerHealth = other.gameObject.GetComponent<playerHealth>();
-            thePlayerHealth.addDamage(damage);
+            KidHealth theKidHealth = other.gameObject.GetComponent<KidHealth>();
+            theKidHealth.addDamage(damage);
+            nextDamage = Time.time + damageRate;
+
+            pushBack(other.transform);
+        }
+
+       
+            if (other.tag == "Player" && nextDamage < Time.time) { 
+            FoxKidHealth theFoxKidHealth = other.gameObject.GetComponent<FoxKidHealth>();
+            theFoxKidHealth.addDamage(damage);
             nextDamage = Time.time + damageRate;
 
             pushBack(other.transform);

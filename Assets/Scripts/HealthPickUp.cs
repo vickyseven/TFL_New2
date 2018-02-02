@@ -21,7 +21,14 @@ public class HealthPickUp : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            playerHealth theHealth = other.gameObject.GetComponent<playerHealth>();
+            KidHealth theHealth = other.gameObject.GetComponent<KidHealth>();
+            theHealth.addHealth(healthAmount);
+            Destroy(gameObject);
+        }
+
+        if (other.tag == "Player")
+        {
+            FoxKidHealth theHealth = other.gameObject.GetComponent<FoxKidHealth>();
             theHealth.addHealth(healthAmount);
             Destroy(gameObject);
         }

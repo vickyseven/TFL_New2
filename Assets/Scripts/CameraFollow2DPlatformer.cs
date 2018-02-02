@@ -11,14 +11,13 @@ public class CameraFollow2DPlatformer : MonoBehaviour {
 
     float lowY; //lowest point the camera can go
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         offset = transform.position - target.position;
 
         lowY = transform.position.y;
-
-
-	}
+    }
 	
 	void FixedUpdate () {
         Vector3 targetCamPos = target.position + offset;

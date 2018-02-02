@@ -18,7 +18,7 @@ public class BoomerangController : MonoBehaviour {
 	void Start() {
         myRB = GetComponent<Rigidbody2D>();
         isFacingRight = facingRight;
-        //        if(transform.rotation.z>0)
+       
         SetDirection();
     }
 

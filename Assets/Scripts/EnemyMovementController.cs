@@ -34,26 +34,23 @@ public class EnemyMovementController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Time.time > nextFlipChance) {
-            if (UnityEngine.Random.Range(0, 10) >=5) flipFacing();
+            if (UnityEngine.Random.Range(0, 10) >=5) FlipFacing();
             nextFlipChance = Time.time + flipTime;
         }
     }
 
    
-   // private void flipFacing()
-    // {
-       // throw new NotImplementedException();
-   // }
+ 
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player")
         {
             if (facingRight && other.transform.position.x < transform.position.x) {
-                flipFacing();
+                FlipFacing();
             }
 
             else if (!facingRight && other.transform.position.x > transform.position.x) {
-            flipFacing();
+            FlipFacing();
             }
         canFlip = false;
         charging = true;
@@ -85,8 +82,8 @@ public class EnemyMovementController : MonoBehaviour {
             }
         }
 
-        void flipFacing() {
-        if (!canFlip) return;
+        void FlipFacing() {
+        if (canFlip == false) return;
         float facingX = enemyGraphic.transform.localScale.x;
         facingX *= -1f;
         enemyGraphic.transform.localScale = new Vector3(facingX, enemyGraphic.transform.localScale.y, enemyGraphic.transform.localScale.z);
