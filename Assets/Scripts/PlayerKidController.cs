@@ -106,12 +106,14 @@ public class PlayerKidController : MonoBehaviour {
         {
             RedKid.SetActive(true);
             FoxKid.SetActive(false);
+            //Change the capsule collision roatation and translation of RedKid
             myRB.mass = 1;
         }
         else if (characterselect == 2)
         {
             RedKid.SetActive(false);
             FoxKid.SetActive(true);
+            //Change the capsule collision roatation and translation of RedFox
             myRB.mass = 0.5f;
         }
 
