@@ -68,7 +68,11 @@ public class PlayerKidController : MonoBehaviour {
             grounded = false;
            myKidAnim.SetBool("isGrounded", grounded);
            myFoxAnim.SetBool("isGrounded", grounded);
-            myRB.AddForce(new Vector2(0, KidjumpHeight));
+
+            if (characterselect == 1)
+                myRB.AddForce(new Vector2(0, KidjumpHeight));
+            if (characterselect == 2)
+                myRB.AddForce(new Vector2(0, FoxjumpHeight));
 
         }
 
@@ -102,11 +106,13 @@ public class PlayerKidController : MonoBehaviour {
         {
             RedKid.SetActive(true);
             FoxKid.SetActive(false);
+            myRB.mass = 1;
         }
         else if (characterselect == 2)
         {
             RedKid.SetActive(false);
             FoxKid.SetActive(true);
+            myRB.mass = 0.5f;
         }
 
         //check if we are grounded - if not, we are falling
@@ -125,7 +131,11 @@ public class PlayerKidController : MonoBehaviour {
            myKidAnim.SetFloat("speed", Mathf.Abs(move));
            myFoxAnim.SetFloat("speed", Mathf.Abs(move));
 
+            if (characterselect == 1)
             myRB.velocity = new Vector2(move * KidmaxSpeed, myRB.velocity.y);
+
+            else if (characterselect == 2)
+                myRB.velocity = new Vector2(move * FoxmaxSpeed, myRB.velocity.y);
 
             if (move > 0 && !facingRight)
             {
