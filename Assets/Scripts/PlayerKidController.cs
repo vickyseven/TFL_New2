@@ -88,8 +88,6 @@ public class PlayerKidController : MonoBehaviour {
 
     void FixedUpdate()
     {
-
-
         //character select
         if (Input.GetButtonDown("Change"))
         {
