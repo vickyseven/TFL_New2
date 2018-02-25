@@ -37,6 +37,10 @@ public class EnemyMovementController : MonoBehaviour {
             if (UnityEngine.Random.Range(0, 10) >=5) FlipFacing();
             nextFlipChance = Time.time + flipTime;
         }
+		if (enemyGraphic == null)
+		{
+			Destroy(gameObject);
+		}
     }
 
    
@@ -60,34 +64,41 @@ public class EnemyMovementController : MonoBehaviour {
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
-        {
-            if (startChargeTime < Time.time)
-            {
-                if (!facingRight) enemyRB.AddForce(new Vector2(-1,0) * enemySpeed);
-                else enemyRB.AddForce(new Vector2(1, 0) * enemySpeed);
-                enemyAnimator.SetBool("isCharging", charging);
+			if (other.tag == "Player")
+			{
+				if (startChargeTime < Time.time)
+				{
+					if (!facingRight) enemyRB.AddForce(new Vector2(-1, 0) * enemySpeed);
+					else enemyRB.AddForce(new Vector2(1, 0) * enemySpeed);
+				if (enemyAnimator)
+				{
+					enemyAnimator.SetBool("isCharging", charging);
+				}
+				}
+			}
 
 
-            }
-        }
     }
         void OnTriggerExit2D(Collider2D other){
             if (other.tag == "Player"){
                 canFlip = true;
                 charging = false;
                     enemyRB.velocity = new Vector2(0f, 0f);
-                    enemyAnimator.SetBool("isCharging", charging);
-
+			if (enemyAnimator)
+			{
+				enemyAnimator.SetBool("isCharging", charging);
+			}
             }
         }
 
         void FlipFacing() {
-        if (canFlip == false) return;
-        float facingX = enemyGraphic.transform.localScale.x;
-        facingX *= -1f;
-        enemyGraphic.transform.localScale = new Vector3(facingX, enemyGraphic.transform.localScale.y, enemyGraphic.transform.localScale.z);
-        facingRight = !facingRight;
-
-        }
-    }
+		if (enemyGraphic)
+		{
+			if (canFlip == false) return;
+			float facingX = enemyGraphic.transform.localScale.x;
+			facingX *= -1f;
+			enemyGraphic.transform.localScale = new Vector3(facingX, enemyGraphic.transform.localScale.y, enemyGraphic.transform.localScale.z);
+			facingRight = !facingRight;
+		}
+	}
+}

@@ -17,7 +17,7 @@ public class BoomerangController : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
         myRB = GetComponent<Rigidbody2D>();
-        isFacingRight = facingRight;
+      //  isFacingRight = facingRight;
        
         SetDirection();
     }
@@ -31,10 +31,14 @@ public class BoomerangController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (facingRight == true)
-        {
-            boomerangSprite.transform.localScale = new Vector3(-1, -1, z: -1);
-        }
+		if (boomerangSprite)
+		{
+			if (facingRight == true)
+			{
+				boomerangSprite.transform.localScale = new Vector3(-1, -1, z: -1);
+			}
+		}
+
 
     }
     public void RemoveForce()
