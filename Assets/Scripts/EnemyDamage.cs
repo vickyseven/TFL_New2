@@ -7,14 +7,14 @@ public class EnemyDamage : MonoBehaviour {
     public float damage;
     public float damageRate;
     public float pushBackForce;
+	public bool IsAttacking;
 
     float nextDamage;
 
 	// Use this for initialization
-	void Start () {
-        nextDamage = 0f;
-    
-		
+	void Start ()
+	{
+		nextDamage = 0f;
 	}
 	
 	// Update is called once per frame
@@ -22,33 +22,37 @@ public class EnemyDamage : MonoBehaviour {
 		
 	}
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Player" && nextDamage < Time.time)
-        {
-            KidHealth theKidHealth = other.gameObject.GetComponent<KidHealth>();
-            theKidHealth.addDamage(damage);
-            nextDamage = Time.time + damageRate;
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Player") IsAttacking = true;
+	}
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.tag == "Player" && nextDamage < Time.time)
+		{
+			IsAttacking = true;
+			KidHealth theKidHealth = other.gameObject.GetComponent<KidHealth>();
+			theKidHealth.addDamage(damage);
+			nextDamage = Time.time + damageRate;
+			pushBack(other.transform);
+		}
 
-            pushBack(other.transform);
-        }
+	}
 
-       
-            if (other.tag == "Player" && nextDamage < Time.time) { 
-            FoxKidHealth theFoxKidHealth = other.gameObject.GetComponent<FoxKidHealth>();
-            theFoxKidHealth.addDamage(damage);
-            nextDamage = Time.time + damageRate;
+	private void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.tag == "Player")
+		{
+			IsAttacking = false;
+		}
+	}
 
-            pushBack(other.transform);
-        }
-    }
-
-    void pushBack(Transform pushedObject)
-    {
-        Vector2 pushDirection = new Vector2(0, (pushedObject.position.x - transform.position.x)).normalized;
-        pushDirection *= pushBackForce;
-        Rigidbody2D pushRB = pushedObject.gameObject.GetComponent<Rigidbody2D>();
-        pushRB.velocity = Vector2.zero;
-        pushRB.AddForce(pushDirection, ForceMode2D.Impulse);
-    }
+	void pushBack(Transform pushedObject)
+	{
+		Vector2 pushDirection = new Vector2((pushedObject.position.x - transform.position.x), 0).normalized;
+		pushDirection *= pushBackForce;
+		Rigidbody2D pushRB = pushedObject.gameObject.GetComponent<Rigidbody2D>();
+		pushRB.velocity = Vector2.zero;
+		pushRB.AddForce(pushDirection, ForceMode2D.Impulse);
+	}
 }
