@@ -42,6 +42,7 @@ public class EnemyHealth : MonoBehaviour {
     void makeDead() //visual and sound effect when enemy dies
     {
         Destroy(gameObject);
+		
         Instantiate(enemyDeathFX, transform.position, transform.rotation);
         if (drops) Instantiate(theDrop, (transform.position + new Vector3 (0,6,0)), transform.rotation);
     }
