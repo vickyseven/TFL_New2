@@ -39,7 +39,7 @@ public class DialogueManager : MonoBehaviour {
             dialogueActive = false;
 
             currentLine = 0;
-           // thePlayer.canMove = true;
+           thePlayer.CanMove = true;
         }
         DText.text = dialogueLines[currentLine];
     }
@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour {
     {
         dialogueActive = true;
         DBox.SetActive(true);
-        //thePlayer.canMove = false;
+        thePlayer.CanMove = false;
         DText.text = dialogue;
     }
 

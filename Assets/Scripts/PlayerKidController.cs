@@ -141,7 +141,15 @@ public class PlayerKidController : MonoBehaviour {
 
 		if (shooting == false)
 		{
-			float move = Input.GetAxis("Horizontal");
+            if (!CanMove)
+            {
+                myRB.velocity = new Vector2(0, 0);
+                ActiveAnim.SetFloat("speed", 0f);
+                return;
+            }
+
+
+            float move = Input.GetAxis("Horizontal");
 			ActiveAnim.SetFloat("speed", Mathf.Abs(move));
 
 			if (characterselect == 1)
