@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyMovementController : MonoBehaviour {
 
     public float enemySpeed;
+	float CurrentSpeed = 0;
 
     Animator enemyAnimator;
 
@@ -37,6 +38,8 @@ public class EnemyMovementController : MonoBehaviour {
             if (UnityEngine.Random.Range(0, 10) >=5) FlipFacing();
             nextFlipChance = Time.time + flipTime;
         }
+		if (enemyGraphic && enemyGraphic.GetComponent<EnemyDamage>().IsAttacking == true) CurrentSpeed=0;
+		else if (charging == true && CurrentSpeed < enemySpeed) CurrentSpeed = CurrentSpeed + 0.2f;
 		if (enemyGraphic == null)
 		{
 			Destroy(gameObject);
@@ -68,8 +71,8 @@ public class EnemyMovementController : MonoBehaviour {
 			{
 				if (startChargeTime < Time.time)
 				{
-					if (!facingRight) enemyRB.AddForce(new Vector2(-1, 0) * enemySpeed);
-					else enemyRB.AddForce(new Vector2(1, 0) * enemySpeed);
+					if (!facingRight) enemyRB.velocity = (new Vector2(-1, 0) * CurrentSpeed);
+					else enemyRB.velocity = (new Vector2(1, 0) * CurrentSpeed);
 				if (enemyAnimator)
 				{
 					enemyAnimator.SetBool("isCharging", charging);
@@ -84,6 +87,7 @@ public class EnemyMovementController : MonoBehaviour {
                 canFlip = true;
                 charging = false;
                     enemyRB.velocity = new Vector2(0f, 0f);
+			CurrentSpeed = 0f;
 			if (enemyAnimator)
 			{
 				enemyAnimator.SetBool("isCharging", charging);

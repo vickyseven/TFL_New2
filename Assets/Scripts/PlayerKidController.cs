@@ -15,7 +15,7 @@ public class PlayerKidController : MonoBehaviour {
 
 	//jumping variables
 	bool grounded = false;
-	float groundCheckCircle = 0.2f;
+	float groundCheckCircle = 0.5f;
 	public LayerMask groundLayer;
 	public Transform groundCheck;
 	public float KidjumpHeight;
@@ -72,7 +72,7 @@ public class PlayerKidController : MonoBehaviour {
 			myRB.velocity = new Vector2 (0,0);
 			return;
 		}
-		if (grounded && Input.GetAxis("Jump") > 0)
+		if (shooting == false && grounded && Input.GetAxis("Jump") > 0)
 		{
 			grounded = false;
 			ActiveAnim.SetBool("isGrounded", grounded);
@@ -88,7 +88,7 @@ public class PlayerKidController : MonoBehaviour {
 		if (characterselect == 1)
 		{
 			if (Input.GetAxisRaw("Fire1") > 0) FireBoomerang();
-			else if (Input.GetAxisRaw("Fire1") == 0)
+			else if (Time.time > (nextFire+fireRate) && Input.GetAxisRaw("Fire1") == 0)
 			{
 				shooting = false;
 				ActiveAnim.SetBool("isShooting", shooting);
@@ -138,6 +138,7 @@ public class PlayerKidController : MonoBehaviour {
 		ActiveAnim.SetBool("isGrounded", grounded);
 		ActiveAnim.SetFloat("verticalSpeed", myRB.velocity.y);
 
+		//movement
 		if (shooting == false)
 		{
 			if (!CanMove)
