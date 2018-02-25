@@ -7,9 +7,9 @@ public class EnemyDamage : MonoBehaviour {
     public float damage;
     public float damageRate;
     public float pushBackForce;
-	public bool IsAttacking;
-
+	public bool IsHitting;
     float nextDamage;
+	KidHealth PlayerHealth;
 
 	// Use this for initialization
 	void Start ()
@@ -19,31 +19,33 @@ public class EnemyDamage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Player") IsAttacking = true;
-	}
-	void OnTriggerStay2D(Collider2D other)
-	{
-		if (other.tag == "Player" && nextDamage < Time.time)
+		if (IsHitting && nextDamage < Time.time)
 		{
-			IsAttacking = true;
-			KidHealth theKidHealth = other.gameObject.GetComponent<KidHealth>();
-			theKidHealth.addDamage(damage);
+			PlayerHealth.addDamage(damage);
 			nextDamage = Time.time + damageRate;
-			pushBack(other.transform);
 		}
 
 	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Player")
+		{
+			IsHitting = true;
+			PlayerHealth = other.gameObject.GetComponent<KidHealth>();
+			pushBack(PlayerHealth.gameObject.transform);
+		}
+	}
+
+//	void OnTriggerStay2D(Collider2D other) { }
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.tag == "Player")
 		{
-			IsAttacking = false;
+			IsHitting = false;
+			PlayerHealth = null;
 		}
 	}
 

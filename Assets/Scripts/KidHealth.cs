@@ -62,7 +62,7 @@ public class KidHealth : MonoBehaviour {
 	}
 
 	public void makeDead() {
-		Instantiate(deathFX, transform.position, transform.rotation);
+		Instantiate(deathFX, transform.position, new Quaternion (0,160,0,0));
 		//		IsDead = true;
 		//		DeathTime = Time.time;
 		Respawn();

@@ -18,6 +18,7 @@ public class PlayerKidController : MonoBehaviour {
 	float groundCheckCircle = 0.5f;
 	public LayerMask groundLayer;
 	public Transform groundCheck;
+	public GameObject ForwardCheck;
 	public float KidjumpHeight;
 	public float FoxjumpHeight;
 
@@ -165,6 +166,12 @@ public class PlayerKidController : MonoBehaviour {
 			{
 				flip();
 			}
+		}
+
+		//fire attack
+		if (Input.GetButtonDown("FireAttack"))
+		{
+			ForwardCheck.GetComponent<ElementalAttacks>().FireAttack();
 		}
 	}
 	void flip()

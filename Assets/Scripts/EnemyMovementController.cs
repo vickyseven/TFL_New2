@@ -24,6 +24,7 @@ public class EnemyMovementController : MonoBehaviour {
     float startChargeTime;
     bool charging;
     Rigidbody2D enemyRB;
+	public int ActivatedTriggers = 0;
 
 
 	// Use this for initialization
@@ -38,7 +39,7 @@ public class EnemyMovementController : MonoBehaviour {
             if (UnityEngine.Random.Range(0, 10) >=5) FlipFacing();
             nextFlipChance = Time.time + flipTime;
         }
-		if (enemyGraphic && enemyGraphic.GetComponent<EnemyDamage>().IsAttacking == true) CurrentSpeed=0;
+		if (enemyGraphic && enemyGraphic.GetComponent<EnemyDamage>().IsHitting == true) CurrentSpeed = 0;
 		else if (charging == true && CurrentSpeed < enemySpeed) CurrentSpeed = CurrentSpeed + 0.2f;
 		if (enemyGraphic == null)
 		{
@@ -52,6 +53,7 @@ public class EnemyMovementController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player")
         {
+			ActivatedTriggers++;
             if (facingRight && other.transform.position.x < transform.position.x) {
                 FlipFacing();
             }
@@ -67,26 +69,26 @@ public class EnemyMovementController : MonoBehaviour {
     }
     void OnTriggerStay2D(Collider2D other)
     {
-			if (other.tag == "Player")
+		if (other.tag == "Player")
+		{
+			if (startChargeTime < Time.time)
 			{
-				if (startChargeTime < Time.time)
-				{
-					if (!facingRight) enemyRB.velocity = (new Vector2(-1, 0) * CurrentSpeed);
-					else enemyRB.velocity = (new Vector2(1, 0) * CurrentSpeed);
+				if (!facingRight) enemyRB.velocity = (new Vector2(-1, 0) * CurrentSpeed);
+				else enemyRB.velocity = (new Vector2(1, 0) * CurrentSpeed);
 				if (enemyAnimator)
 				{
 					enemyAnimator.SetBool("isCharging", charging);
 				}
-				}
 			}
+		}
+	}
 
-
-    }
-        void OnTriggerExit2D(Collider2D other){
+	void OnTriggerExit2D(Collider2D other){
             if (other.tag == "Player"){
+			ActivatedTriggers--;
                 canFlip = true;
-                charging = false;
-                    enemyRB.velocity = new Vector2(0f, 0f);
+			if (ActivatedTriggers == 0) charging = false;
+			enemyRB.velocity = new Vector2(0f, 0f);
 			CurrentSpeed = 0f;
 			if (enemyAnimator)
 			{
