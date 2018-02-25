@@ -138,18 +138,16 @@ public class PlayerKidController : MonoBehaviour {
 		ActiveAnim.SetBool("isGrounded", grounded);
 		ActiveAnim.SetFloat("verticalSpeed", myRB.velocity.y);
 
-
 		if (shooting == false)
 		{
-            if (!CanMove)
-            {
-                myRB.velocity = new Vector2(0, 0);
-                ActiveAnim.SetFloat("speed", 0f);
-                return;
-            }
+			if (!CanMove)
+			{
+				myRB.velocity = Vector2.zero;
+				ActiveAnim.SetFloat("speed", 0f);
+				return;
+			}
 
-
-            float move = Input.GetAxis("Horizontal");
+			float move = Input.GetAxis("Horizontal");
 			ActiveAnim.SetFloat("speed", Mathf.Abs(move));
 
 			if (characterselect == 1)
