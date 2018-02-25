@@ -29,6 +29,7 @@ public class DialogueHolder : MonoBehaviour {
         if(other.gameObject.name == "PlayerKid")
         {
             {
+                DMan.dialogueLines = dialogueLines;
                 DMan.ShowBox(dialogue);
 
             }
