@@ -12,6 +12,7 @@ public class PlayerKidController : MonoBehaviour {
 	public float KidmaxSpeed;
 	public float FoxmaxSpeed;
 	public bool CanMove;
+	bool facingRight;
 
 	//jumping variables
 	bool grounded = false;
@@ -22,15 +23,13 @@ public class PlayerKidController : MonoBehaviour {
 	public float KidjumpHeight;
 	public float FoxjumpHeight;
 
-
+	//Colliders
 	Rigidbody2D myRB;
-	bool facingRight;
 	BoxCollider2D PlayerCollider;
 	//Animators
 	Animator ActiveAnim;
 	Animator myKidAnim;
 	Animator myFoxAnim;
-
 
 	//for shooting boomerang
 	public Transform handTip;
@@ -39,10 +38,14 @@ public class PlayerKidController : MonoBehaviour {
 	float nextFire = 0f;
 	bool shooting = false;
 
+	//collection and point systems
+	UI_SoulCounter HUDSoulCounter;
+	public int SoulsCollected = 0;
 
 	// Use this for initialization
 	void Start()
 	{
+		HUDSoulCounter = FindObjectOfType<UI_SoulCounter>();
 
 		//character select
 		RedKid = GameObject.Find("RedKid");

@@ -25,7 +25,7 @@ public class SoulCollect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
+			other.GetComponent<PlayerKidController>().SoulsCollected++;
             Destroy(gameObject);
         }
     }
