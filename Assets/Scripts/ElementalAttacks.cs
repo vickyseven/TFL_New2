@@ -23,9 +23,14 @@ public class ElementalAttacks : MonoBehaviour {
 
 	public void FireAttack()
 	{
+		Vector3 Offset = new Vector3(0,0,0);
+		if (FXrotation == new Quaternion(0, 0, 0, 0)) Offset = new Vector3(-1.75f, 0, 0);
+		else if (FXrotation == new Quaternion(0, 180, 0, 0)) Offset = new Vector3(1.75f, 0, 0);
+
+		Instantiate(fireFX, transform.position + Offset, FXrotation);
+
 		if (Target)
 		{
-			Instantiate(fireFX, transform.position - new Vector3 (1.5f,0,0), FXrotation);
 			DestroyObject(Target);
 		}
 	}
