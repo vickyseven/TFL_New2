@@ -39,13 +39,13 @@ public class PlayerKidController : MonoBehaviour {
 	bool shooting = false;
 
 	//collection and point systems
-	UI_SoulCounter HUDSoulCounter;
+//	UI_SoulCounter HUDSoulCounter;
 	public int SoulsCollected = 0;
 
 	// Use this for initialization
 	void Start()
 	{
-		HUDSoulCounter = FindObjectOfType<UI_SoulCounter>();
+//		HUDSoulCounter = FindObjectOfType<UI_SoulCounter>();
 
 		//character select
 		RedKid = GameObject.Find("RedKid");
@@ -174,6 +174,8 @@ public class PlayerKidController : MonoBehaviour {
 		//fire attack
 		if (Input.GetButtonDown("FireAttack"))
 		{
+			if (facingRight) ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion (0,0,0,0);
+			else ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion(0, 180, 0, 0);
 			ForwardCheck.GetComponent<ElementalAttacks>().FireAttack();
 		}
 	}

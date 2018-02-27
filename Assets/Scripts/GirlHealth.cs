@@ -11,7 +11,7 @@ public class GirlHealth : MonoBehaviour
 
     public float currentHealth;
 
-    TeenController controlMovement;
+//    TeenController controlMovement;
 
     //HUD Variables
     public Slider healthSlider;
@@ -20,7 +20,7 @@ public class GirlHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        controlMovement = GetComponent<TeenController>();
+//        controlMovement = GetComponent<TeenController>();
 
 
         //HUD Initialization
