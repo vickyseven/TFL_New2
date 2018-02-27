@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KillPlayerAndRespawn : MonoBehaviour {
-	BoxCollider2D CollisionZone;
+//	BoxCollider2D CollisionZone;
 	public Transform RespawnLocation;
 	// Use this for initialization
 	void Start ()
 	{
-		CollisionZone = GetComponent<BoxCollider2D>();
+//		CollisionZone = GetComponent<BoxCollider2D>();
 	}
 	
 	// Update is called once per frame

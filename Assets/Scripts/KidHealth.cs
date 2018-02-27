@@ -10,7 +10,7 @@ public class KidHealth : MonoBehaviour {
 	//	float DeathTime = 0f;
 	//	bool IsDead;
 	public float currentHealth;
-	PlayerKidController controlMovement;
+//	PlayerKidController controlMovement;
 	public Vector3 Checkpoint;
 
 	//HUD Variables
@@ -19,7 +19,7 @@ public class KidHealth : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		currentHealth = maxHealth;
-		controlMovement = GetComponent<PlayerKidController>();
+//		controlMovement = GetComponent<PlayerKidController>();
 
 		//HUD Initialization
 		healthSlider.maxValue = maxHealth;

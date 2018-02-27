@@ -9,7 +9,7 @@ public class SUNboomerang : MonoBehaviour
 
     public bool facingRight;
 
-    bool isFacingRight;
+//    bool isFacingRight;
 
     public GameObject boomerangSprite;
 
@@ -19,7 +19,7 @@ public class SUNboomerang : MonoBehaviour
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
-        isFacingRight = facingRight;
+//        isFacingRight = facingRight;
 
         SetDirection();
     }

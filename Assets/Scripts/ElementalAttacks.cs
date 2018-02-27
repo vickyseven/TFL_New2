@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ElementalAttacks : MonoBehaviour {
 	GameObject Target = null;
+	public GameObject fireFX;
+	public Quaternion FXrotation;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,6 +23,10 @@ public class ElementalAttacks : MonoBehaviour {
 
 	public void FireAttack()
 	{
-		if (Target) DestroyObject(Target);
+		if (Target)
+		{
+			Instantiate(fireFX, transform.position - new Vector3 (1.5f,0,0), FXrotation);
+			DestroyObject(Target);
+		}
 	}
 }
