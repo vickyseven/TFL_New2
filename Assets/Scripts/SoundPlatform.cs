@@ -18,7 +18,7 @@ public class SoundPlatform : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Player" && HasPlayed == false) 
+		if (other.tag == "Player" && HasPlayed == false && PuzzleController.IsComplete == false) 
 		{
 			Note.Play();
 			HasPlayed = true;

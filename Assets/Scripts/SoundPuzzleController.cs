@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundPuzzleController : MonoBehaviour {
-	public int[] PlayedSequence = new int [5];
+	int[] PlayedSequence = new int [5];
 	public int[] TargetSequence = new int[5];
-	public int i = 0;
+	int i = 0;
 	public AudioSource[] Sounds = new AudioSource [5];
-	public bool SequencedListening;
-	public float Entertime;
+	public bool IsComplete = false;
+	bool SequencedListening;
+	float Entertime;
 	int k = 0;
 	// Use this for initialization
 	void Start () {
@@ -63,6 +64,7 @@ public class SoundPuzzleController : MonoBehaviour {
 			}
 		else i = 0; return;
 		}
+		IsComplete = true;
 		Destroy(gameObject, 1.5f);
 	}
 }
