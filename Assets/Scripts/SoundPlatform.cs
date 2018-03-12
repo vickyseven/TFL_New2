@@ -7,7 +7,8 @@ public class SoundPlatform : MonoBehaviour {
 	bool HasPlayed;
 	AudioSource Note;
 	public int NoteNumber;
-	int check = 0;
+	int check = -1;
+	public SoundPuzzleController PuzzleController;
 
 	// Use this for initialization
 	void Start () {
@@ -15,17 +16,21 @@ public class SoundPlatform : MonoBehaviour {
 		Note = GetComponent<AudioSource>();
 	}
 
-	public int OnTriggerEnter2D(Collider2D other)
+	public void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Player") 
+		if (other.tag == "Player" && HasPlayed == false) 
 		{
 			Note.Play();
 			HasPlayed = true;
 			check = NoteNumber;
+			PuzzleController.NotePlayed(check);
 		}
-		return check;
 	}
 
+	private void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.tag == "Player") HasPlayed = false;
+	}
 
 	// Update is called once per frame
 	void Update () {
