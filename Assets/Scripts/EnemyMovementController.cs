@@ -7,6 +7,8 @@ public class EnemyMovementController : MonoBehaviour {
 
     public float enemySpeed;
 	float CurrentSpeed = 0;
+	public bool MovesVertically;
+	Vector2 Direction;
 
     Animator enemyAnimator;
 
@@ -31,6 +33,8 @@ public class EnemyMovementController : MonoBehaviour {
 	void Start () {
         enemyAnimator = GetComponentInChildren<Animator>();
         enemyRB = GetComponent<Rigidbody2D>();
+		if (MovesVertically == true) Direction = new Vector2(0, 1);
+		else Direction = new Vector2(1, 0);
 	}
 	
 	// Update is called once per frame
@@ -73,8 +77,8 @@ public class EnemyMovementController : MonoBehaviour {
 		{
 			if (startChargeTime < Time.time)
 			{
-				if (!facingRight) enemyRB.velocity = (new Vector2(-1, 0) * CurrentSpeed);
-				else enemyRB.velocity = (new Vector2(1, 0) * CurrentSpeed);
+				if (!facingRight) enemyRB.velocity = (-Direction * CurrentSpeed);
+				else enemyRB.velocity = (Direction * CurrentSpeed);
 				if (enemyAnimator)
 				{
 					enemyAnimator.SetBool("isCharging", charging);
