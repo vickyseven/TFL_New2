@@ -7,6 +7,7 @@ public class PlayerKidController : MonoBehaviour {
 	//character select
 	GameObject RedKid, FoxKid;
 	int characterselect;
+	public bool CanChange = false;
 
 	//movement variables
 	public float KidmaxSpeed;
@@ -26,6 +27,7 @@ public class PlayerKidController : MonoBehaviour {
 	//Colliders
 	Rigidbody2D myRB;
 	BoxCollider2D PlayerCollider;
+
 	//Animators
 	Animator ActiveAnim;
 	Animator myKidAnim;
@@ -41,6 +43,9 @@ public class PlayerKidController : MonoBehaviour {
 	//collection and point systems
 //	UI_SoulCounter HUDSoulCounter;
 	public int SoulsCollected = 0;
+
+	//Elemental Attacks
+	public bool CanElementalAttack = false;
 
 	// Use this for initialization
 	void Start()
@@ -107,7 +112,7 @@ public class PlayerKidController : MonoBehaviour {
 
 
 		//character select
-		if (Input.GetButtonDown("Change"))
+		if (Input.GetButtonDown("Change")&&CanChange)
 		{
 			if (characterselect == 1)
 			{
@@ -172,7 +177,7 @@ public class PlayerKidController : MonoBehaviour {
 		}
 
 		//fire attack
-		if (Input.GetButtonDown("FireAttack"))
+		if (Input.GetButtonDown("FireAttack")&&CanElementalAttack)
 		{
 			if (facingRight) ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion (0,0,0,0);
 			else ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion(0, 180, 0, 0);

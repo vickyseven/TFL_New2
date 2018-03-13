@@ -18,7 +18,7 @@ public class SpiritVanish : MonoBehaviour {
         if(DHold.DialogueOver == true)
         {
             Instantiate(SpiritVanishFX, transform.position, transform.rotation);
-            Destroy(gameObject);
+            Destroy(gameObject, 0.5f);
 
         }
     }
