@@ -7,6 +7,7 @@ public class SoulCollect : MonoBehaviour
 {
 
     public float soulAmount;
+    public AudioSource audioSoul;
 
 
     // Use this for initialization
@@ -26,7 +27,13 @@ public class SoulCollect : MonoBehaviour
         if (other.tag == "Player")
         {
 			other.GetComponent<PlayerKidController>().SoulsCollected++;
+            
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        audioSoul.Play();
     }
 }
