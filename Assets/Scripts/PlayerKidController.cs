@@ -8,6 +8,7 @@ public class PlayerKidController : MonoBehaviour {
 	GameObject RedKid, FoxKid;
 	int characterselect;
 	public bool CanChange = false;
+	GameController GameContr;
 
 	//movement variables
 	public float KidmaxSpeed;
@@ -56,7 +57,8 @@ public class PlayerKidController : MonoBehaviour {
 		//character select
 		RedKid = GameObject.Find("RedKid");
 		FoxKid = GameObject.Find("FoxKid");
-
+		GameContr = FindObjectOfType<GameController>();
+		GameContr.UpdatePlayer(gameObject);
 
 		myRB = GetComponent<Rigidbody2D>();
 		myKidAnim = RedKid.GetComponent<Animator>();
