@@ -34,6 +34,6 @@ public class SoulCollect : MonoBehaviour
 
     private void OnDestroy()
     {
-        audioSoul.Play();
+		AudioSource.PlayClipAtPoint(audioSoul.clip,gameObject.transform.position);
     }
 }
