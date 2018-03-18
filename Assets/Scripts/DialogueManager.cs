@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour {
     public GameObject DBox;
     public Text DText;
 
-    public bool dialogueActive;
+    public bool dialogueActive = false;
 
     public string[] dialogueLines;
     public int currentLine;

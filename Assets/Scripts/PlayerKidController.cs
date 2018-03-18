@@ -8,6 +8,7 @@ public class PlayerKidController : MonoBehaviour {
 	GameObject RedKid, FoxKid;
 	int characterselect;
 	public bool CanChange = false;
+	GameController GameContr;
 
 	//movement variables
 	public float KidmaxSpeed;
@@ -46,6 +47,7 @@ public class PlayerKidController : MonoBehaviour {
 
 	//Elemental Attacks
 	public bool CanElementalAttack = false;
+	bool IsElementalAttacking = false;
 
 	// Use this for initialization
 	void Start()
@@ -55,7 +57,8 @@ public class PlayerKidController : MonoBehaviour {
 		//character select
 		RedKid = GameObject.Find("RedKid");
 		FoxKid = GameObject.Find("FoxKid");
-
+		GameContr = FindObjectOfType<GameController>();
+		GameContr.UpdatePlayer(gameObject);
 
 		myRB = GetComponent<Rigidbody2D>();
 		myKidAnim = RedKid.GetComponent<Animator>();
@@ -104,13 +107,19 @@ public class PlayerKidController : MonoBehaviour {
 			}
 		}
 
+		//fire attack
+		if (Input.GetButtonDown("FireAttack") && CanElementalAttack) ElementalAttack();
+		else if (Time.time > (nextFire + fireRate) && Input.GetAxisRaw("FireAttack") == 0)
+		{
+			IsElementalAttacking = false;
+			ActiveAnim.SetBool("IsCasting", IsElementalAttacking);
+		}
+
 
 	}
 
 	void FixedUpdate()
 	{
-
-
 		//character select
 		if (Input.GetButtonDown("Change")&&CanChange)
 		{
@@ -175,21 +184,34 @@ public class PlayerKidController : MonoBehaviour {
 				flip();
 			}
 		}
-
-		//fire attack
-		if (Input.GetButtonDown("FireAttack")&&CanElementalAttack)
-		{
-			if (facingRight) ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion (0,0,0,0);
-			else ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion(0, 180, 0, 0);
-			ForwardCheck.GetComponent<ElementalAttacks>().FireAttack();
-		}
 	}
+
 	void flip()
 	{
 		facingRight = !facingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	void ElementalAttack()
+	{
+		if (Time.time > nextFire)
+		{
+			nextFire = Time.time + fireRate*5;
+			if (facingRight)
+			{
+				ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion(0, 0, 0, 0);
+			}
+			else if (!facingRight)
+			{
+				ForwardCheck.GetComponent<ElementalAttacks>().FXrotation = new Quaternion(0, 180, 0, 0);
+			}
+
+			IsElementalAttacking = true;
+			ForwardCheck.GetComponent<ElementalAttacks>().FireAttack();
+			ActiveAnim.SetBool("IsCasting", IsElementalAttacking);
+		}
 	}
 
 	void FireBoomerang()
@@ -208,10 +230,8 @@ public class PlayerKidController : MonoBehaviour {
 				LeftBoomerang.GetComponent<BoomerangController>().facingRight = false;
 			}
 
-			{
-				shooting = true;
-				ActiveAnim.SetBool("isShooting", shooting);
-			}
+			shooting = true;
+			ActiveAnim.SetBool("isShooting", shooting);
 		}
 	}
 }

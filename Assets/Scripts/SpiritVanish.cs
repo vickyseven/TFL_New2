@@ -6,6 +6,7 @@ public class SpiritVanish : MonoBehaviour {
 
     public DialogueHolder DHold;
     public GameObject SpiritVanishFX;
+	bool IsOver = false;
 
     // Use this for initialization
     void Start() {
@@ -15,11 +16,17 @@ public class SpiritVanish : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if(DHold.DialogueOver == true)
+        if(DHold.DialogueOver == true && IsOver == false)
         {
-            Instantiate(SpiritVanishFX, transform.position, transform.rotation);
-            Destroy(gameObject, 0.5f);
+			Vanish();
+		}
+	}
 
-        }
-    }
+	void Vanish()
+	{
+		IsOver = true;
+		gameObject.GetComponent<SpriteRenderer>().enabled = false;
+		Instantiate(SpiritVanishFX, transform.position, transform.rotation);
+		Destroy(gameObject, 0.5f);
+	}
 }
