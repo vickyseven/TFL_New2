@@ -30,6 +30,8 @@ public class CaveEntranceScript : MonoBehaviour {
 			Player = other.gameObject;
 			GameContr.StashedCharLoc = SpawnPosition;
 			GameContr.IsInCave = true;
+			GameContr.StashedHealth = Player.GetComponent<KidHealth>().currentHealth;
+			GameContr.StashedSoulCount = Player.GetComponent<PlayerKidController>().SoulsCollected;
 //			SceneManager.MoveGameObjectToScene(Player, Cave);
 //			SceneManager.SetActiveScene(Cave);
 		}

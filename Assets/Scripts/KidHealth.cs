@@ -9,7 +9,7 @@ public class KidHealth : MonoBehaviour {
 	public GameObject deathFX;
 	//	float DeathTime = 0f;
 	//	bool IsDead;
-	public float currentHealth;
+	public float currentHealth = 70f;
 //	PlayerKidController controlMovement;
 	public Vector3 Checkpoint;
 
@@ -18,12 +18,12 @@ public class KidHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		currentHealth = maxHealth;
+//		currentHealth = currentHealth;
 //		controlMovement = GetComponent<PlayerKidController>();
 
 		//HUD Initialization
 		healthSlider.maxValue = maxHealth;
-		healthSlider.value = maxHealth;
+		healthSlider.value = currentHealth;
 
 	}
 
