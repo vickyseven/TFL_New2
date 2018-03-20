@@ -9,11 +9,18 @@ public class GameController : MonoBehaviour {
 	public bool IsInCave;
 	bool HasBeenInCave = false;
 	bool OutTheCave = false;
+
 //	float currenttime;
+	float currenttime;
+	public float StashedHealth;
+	public int StashedSoulCount;
+	public bool HasSmallPhoenix;
+
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(gameObject);
 		StashedCharLoc = new Vector3(0, 0, 0);
+		StashedHealth = 70f;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +33,8 @@ public class GameController : MonoBehaviour {
 	public void UpdatePlayer(GameObject NewPlayer)
 	{
 		Player = NewPlayer;
+		Player.GetComponent<KidHealth>().currentHealth = StashedHealth;
+		Player.GetComponent<PlayerKidController>().SoulsCollected = StashedSoulCount;
 	}
 
 	public void SetPlayerPosition(Vector3 PlayerLoc)
