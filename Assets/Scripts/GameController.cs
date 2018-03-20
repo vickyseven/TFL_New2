@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
 	public bool IsInCave;
 	bool HasBeenInCave = false;
 	bool OutTheCave = false;
-	float currenttime;
+//	float currenttime;
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(gameObject);
@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!HasBeenInCave && IsInCave) HasBeenInCave = true;
-		else if (!OutTheCave && HasBeenInCave && !IsInCave) { OutTheCave = true; currenttime = Time.time; }
+		else if (!OutTheCave && HasBeenInCave && !IsInCave) { OutTheCave = true;}
 		else if (OutTheCave) OutOfCave();
 	}
 

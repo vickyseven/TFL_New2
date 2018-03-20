@@ -17,7 +17,7 @@ public class PlayerKidController : MonoBehaviour {
 	bool facingRight;
 
 	//jumping variables
-	bool grounded = false;
+	public bool grounded = false;
 	float groundCheckCircle = 0.5f;
 	public LayerMask groundLayer;
 	public Transform groundCheck;
@@ -79,22 +79,29 @@ public class PlayerKidController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update()
 	{
+		//Check if movement is enabled
 		if (!CanMove)
 		{
 			myRB.velocity = new Vector2 (0,0);
 			return;
 		}
+
+		//Jumping
 		if (shooting == false && grounded && Input.GetAxis("Jump") > 0)
 		{
 			grounded = false;
 			ActiveAnim.SetBool("isGrounded", grounded);
 
 			if (characterselect == 1)
-				myRB.AddForce(new Vector2(0, KidjumpHeight));
+				myRB.velocity = (new Vector2(0, KidjumpHeight));
 			if (characterselect == 2)
-				myRB.AddForce(new Vector2(0, FoxjumpHeight));
-
+				myRB.velocity = (new Vector2(0, FoxjumpHeight));
 		}
+		else if (grounded == false)
+		{
+			myRB.velocity = Vector2.Min(myRB.velocity - new Vector2 (0, (1f / characterselect)), new Vector2 (0, 30));
+		}
+		else if (grounded) myRB.velocity = new Vector2 (myRB.velocity.x, 0);
 
 		//player shooting
 		if (characterselect == 1)
@@ -138,8 +145,8 @@ public class PlayerKidController : MonoBehaviour {
 			FoxKid.SetActive(false);
 			ActiveAnim = myKidAnim;
 			myRB.mass = 1;
-			PlayerCollider.size = (new Vector2(1.2f,3.6f));
-			PlayerCollider.offset = (new Vector2(0.7f, -4.6f));
+			PlayerCollider.size = (new Vector2(1.2f,2.7f));
+			PlayerCollider.offset = (new Vector2(0f, -1.17f));
 		}
 		else if (characterselect == 2)
 		{
@@ -147,8 +154,8 @@ public class PlayerKidController : MonoBehaviour {
 			FoxKid.SetActive(true);
 			ActiveAnim = myFoxAnim;
 			myRB.mass = 0.5f;
-			PlayerCollider.size = (new Vector2(2.8f, 1.6f));
-			PlayerCollider.offset = (new Vector2(0.85f, -5.5f));
+			PlayerCollider.size = (new Vector2(0f, 0f));
+			PlayerCollider.offset = (new Vector2(0f, 0f));
 		}
 
 		//check if we are grounded - if not, we are falling

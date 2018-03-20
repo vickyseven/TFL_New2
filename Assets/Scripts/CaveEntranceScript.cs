@@ -7,8 +7,8 @@ public class CaveEntranceScript : MonoBehaviour {
 	Vector3 SpawnPosition;
 	public Transform SpawnTransform;
 	public bool IsOn;
-	Scene Cave;
-	GameObject Player;
+//	Scene Cave;
+//	GameObject Player;
 	GameController GameContr;
 	// Use this for initialization
 	void Start () {
@@ -26,8 +26,8 @@ public class CaveEntranceScript : MonoBehaviour {
 		{
 			IsOn = true;
 			SceneManager.LoadScene("TFL_CAVE1");
-			Cave = SceneManager.GetSceneByName("TFL_CAVE1");
-			Player = other.gameObject;
+//			Cave = SceneManager.GetSceneByName("TFL_CAVE1");
+//			Player = other.gameObject;
 			GameContr.StashedCharLoc = SpawnPosition;
 			GameContr.IsInCave = true;
 //			SceneManager.MoveGameObjectToScene(Player, Cave);

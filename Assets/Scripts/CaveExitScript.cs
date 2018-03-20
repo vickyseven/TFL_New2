@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class CaveExitScript : MonoBehaviour
 {
 	public bool IsOn;
-	Scene LVL1;
-	GameObject Player;
+//	Scene LVL1;
+//	GameObject Player;
 	GameController GameContr;
 	// Use this for initialization
 	void Start()
@@ -26,8 +26,8 @@ public class CaveExitScript : MonoBehaviour
 		{
 			IsOn = true;
 			SceneManager.LoadScene("TFL_LVL1");
-			LVL1 = SceneManager.GetSceneByName("TFL_LVL1");
-			Player = other.gameObject;
+//			LVL1 = SceneManager.GetSceneByName("TFL_LVL1");
+//			Player = other.gameObject;
 			GameContr.IsInCave = false;
 			//			SceneManager.MoveGameObjectToScene(Player, Cave);
 			//			SceneManager.SetActiveScene(Cave);
