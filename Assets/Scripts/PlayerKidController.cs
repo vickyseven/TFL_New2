@@ -26,7 +26,7 @@ public class PlayerKidController : MonoBehaviour {
 	public float FoxjumpHeight;
 
 	//Colliders
-	Rigidbody2D myRB;
+	public Rigidbody2D myRB;
 	BoxCollider2D PlayerCollider;
 
 	//Animators
@@ -97,10 +97,8 @@ public class PlayerKidController : MonoBehaviour {
 			if (characterselect == 2)
 				myRB.velocity = (new Vector2(0, FoxjumpHeight));
 		}
-		else if (grounded == false)
-		{
-			myRB.velocity = Vector2.Min(myRB.velocity - new Vector2 (0, (1f / characterselect)), new Vector2 (0, 30));
-		}
+		else if (grounded == false) myRB.velocity = Vector2.Min(myRB.velocity - new Vector2 (0, (1f / characterselect)), new Vector2 (0, 100));
+//		else if (grounded == false && bouncing == true) myRB.velocity = Vector2.Min(myRB.velocity - new Vector2(0, (1f / characterselect)), new Vector2(0, 75));
 		else if (grounded) myRB.velocity = new Vector2 (myRB.velocity.x, 0);
 
 		//player shooting
