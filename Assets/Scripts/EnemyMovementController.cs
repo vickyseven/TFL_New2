@@ -31,8 +31,8 @@ public class EnemyMovementController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        enemyAnimator = GetComponentInChildren<Animator>();
-        enemyRB = GetComponent<Rigidbody2D>();
+		enemyAnimator = GetComponentInChildren<Animator>();
+		enemyRB = GetComponent<Rigidbody2D>();
 		if (MovesVertically == true) Direction = new Vector2(0, 1);
 		else Direction = new Vector2(1, 0);
 	}
@@ -68,6 +68,7 @@ public class EnemyMovementController : MonoBehaviour {
         canFlip = false;
         charging = true;
         startChargeTime = Time.time + chargeTime;
+			GetComponent<AudioSource>().Play();
         }
        
     }
@@ -88,9 +89,9 @@ public class EnemyMovementController : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-            if (other.tag == "Player"){
+		if (other.tag == "Player"){
 			ActivatedTriggers--;
-                canFlip = true;
+			canFlip = true;
 			if (ActivatedTriggers == 0) charging = false;
 			enemyRB.velocity = new Vector2(0f, 0f);
 			CurrentSpeed = 0f;
@@ -98,10 +99,10 @@ public class EnemyMovementController : MonoBehaviour {
 			{
 				enemyAnimator.SetBool("isCharging", charging);
 			}
-            }
-        }
+		}
+	}
 
-        void FlipFacing() {
+	void FlipFacing() {
 		if (enemyGraphic)
 		{
 			if (canFlip == false) return;

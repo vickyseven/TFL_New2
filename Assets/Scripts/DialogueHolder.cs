@@ -45,6 +45,7 @@ public class DialogueHolder : MonoBehaviour {
 		{
 			DMan = FindObjectOfType<DialogueManager>();
 			OnDialogueZone = true;
+			GetComponent<AudioSource>().Play();
 		}
 	}
 
