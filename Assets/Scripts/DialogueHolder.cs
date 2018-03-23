@@ -17,7 +17,7 @@ public class DialogueHolder : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		if (GetComponent<MeshRenderer>()) GetComponent<MeshRenderer>().sortingLayerName = "UI";
+		if (GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().sortingLayerName = "UI";
 	}
 
 	// Update is called once per frame
@@ -47,7 +47,7 @@ public class DialogueHolder : MonoBehaviour {
 			DMan = FindObjectOfType<DialogueManager>();
 			OnDialogueZone = true;
 			GetComponent<AudioSource>().Play();
-			if (GetComponent<MeshRenderer>()) GetComponent<MeshRenderer>().enabled = true;
+			if (GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().enabled = true;
 		}
 	}
 
@@ -59,7 +59,7 @@ public class DialogueHolder : MonoBehaviour {
 			OnDialogueZone = false;
 			DialogueActive = false;
 			ManualStart = false;
-			if (GetComponent<MeshRenderer>()) GetComponent<MeshRenderer>().enabled = false;
+			if (GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().enabled = false;
 		}
 	}
 
