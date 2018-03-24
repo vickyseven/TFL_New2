@@ -105,7 +105,7 @@ public class EnemyMovementController : MonoBehaviour {
 	void FlipFacing() {
 		if (enemyGraphic)
 		{
-			if (canFlip == false) return;
+			if (!MovesVertically && canFlip == false) return;
 			float facingX = enemyGraphic.transform.localScale.x;
 			facingX *= -1f;
 			enemyGraphic.transform.localScale = new Vector3(facingX, enemyGraphic.transform.localScale.y, enemyGraphic.transform.localScale.z);
