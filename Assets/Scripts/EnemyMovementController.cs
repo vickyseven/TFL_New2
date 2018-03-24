@@ -39,7 +39,7 @@ public class EnemyMovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Time.time > nextFlipChance) {
+		if(!MovesVertically && Time.time > nextFlipChance) {
             if (UnityEngine.Random.Range(0, 10) >=5) FlipFacing();
             nextFlipChance = Time.time + flipTime;
         }
@@ -78,12 +78,17 @@ public class EnemyMovementController : MonoBehaviour {
 		{
 			if (startChargeTime < Time.time)
 			{
-				if (!facingRight) enemyRB.velocity = (-Direction * CurrentSpeed);
-				else enemyRB.velocity = (Direction * CurrentSpeed);
-				if (enemyAnimator)
+				if (!MovesVertically)
 				{
-					enemyAnimator.SetBool("isCharging", charging);
+					if (!facingRight) enemyRB.velocity = (-Direction * CurrentSpeed);
+					else enemyRB.velocity = (Direction * CurrentSpeed);
+					if (enemyAnimator)
+					{
+						enemyAnimator.SetBool("isCharging", charging);
+					}
 				}
+				else enemyRB.velocity = (-Direction * CurrentSpeed);
+
 			}
 		}
 	}
