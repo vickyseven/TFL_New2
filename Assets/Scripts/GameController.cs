@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour {
 	public float StashedHealth;
 	public int StashedSoulCount;
 	public bool HasSmallPhoenix;
+	public bool CanChange;
+	public bool CanFire;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +37,8 @@ public class GameController : MonoBehaviour {
 		Player = NewPlayer;
 		Player.GetComponent<KidHealth>().currentHealth = StashedHealth;
 		Player.GetComponent<PlayerKidController>().SoulsCollected = StashedSoulCount;
+		Player.GetComponent<PlayerKidController>().CanChange = CanChange;
+		Player.GetComponent<PlayerKidController>().CanElementalAttack = CanFire;
 	}
 
 	public void SetPlayerPosition(Vector3 PlayerLoc)
@@ -44,9 +48,12 @@ public class GameController : MonoBehaviour {
 
 	public void OutOfCave()
 	{
+
 		SetPlayerPosition(StashedCharLoc);
 		HasBeenInCave = false;
 		OutTheCave = false;
+		CanChange = true;
+		CanFire = true;
 	}
 
 }
