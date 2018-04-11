@@ -7,6 +7,7 @@ public class PhoenixController : MonoBehaviour {
 	public DialogueHolder DHold;
 	public GameObject SpiritVanishFX;
 	GameController GameContr;
+	public bool SmallPhoenixRecovered;
 
 	// Use this for initialization
 	void Start()
@@ -23,8 +24,8 @@ public class PhoenixController : MonoBehaviour {
 	{
 		if(DHold.DialogueOver && GameContr.HasSmallPhoenix)
 		{
-			Instantiate(SpiritVanishFX, transform.position, transform.rotation);
-			Destroy(gameObject);
+			SmallPhoenixRecovered = true;
+			Destroy(gameObject, 2f);
 		}
 	}
 }
