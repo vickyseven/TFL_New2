@@ -8,7 +8,7 @@ public class Destroy : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        Destroy(gameObject, aliveTime);
+//        Destroy(gameObject, aliveTime);
 		
 	}
 	

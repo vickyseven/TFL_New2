@@ -10,7 +10,7 @@ public class KidHealth : MonoBehaviour {
 	//	float DeathTime = 0f;
 	//	bool IsDead;
 	public float currentHealth = 70f;
-//	PlayerKidController controlMovement;
+	PlayerKidController controlMovement;
 	public Vector3 Checkpoint;
 
 	//HUD Variables
@@ -19,7 +19,7 @@ public class KidHealth : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 //		currentHealth = currentHealth;
-//		controlMovement = GetComponent<PlayerKidController>();
+		controlMovement = GetComponent<PlayerKidController>();
 
 		//HUD Initialization
 		healthSlider.maxValue = maxHealth;
@@ -63,6 +63,8 @@ public class KidHealth : MonoBehaviour {
 
 	public void makeDead() {
 		Instantiate(deathFX, transform.position, new Quaternion (0,160,0,0));
+		DestroyObject (FindObjectOfType<BoomerangController>().gameObject);
+		controlMovement.CanShoot = true;
 		//		IsDead = true;
 		//		DeathTime = Time.time;
 		Respawn();
