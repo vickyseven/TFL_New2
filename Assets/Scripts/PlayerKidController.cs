@@ -40,6 +40,7 @@ public class PlayerKidController : MonoBehaviour {
 	float fireRate = 0.44f;
 	float nextFire = 0f;
 	bool shooting = false;
+	public bool CanShoot = true;
 
 	//collection and point systems
 //	UI_SoulCounter HUDSoulCounter;
@@ -162,9 +163,7 @@ public class PlayerKidController : MonoBehaviour {
 		ActiveAnim.SetFloat("verticalSpeed", myRB.velocity.y);
 
 		//movement
-		if (shooting == false)
-		{
-			if (!CanMove)
+		if (!CanMove)
 			{
 				myRB.velocity = Vector2.zero;
 				ActiveAnim.SetFloat("speed", 0f);
@@ -188,7 +187,6 @@ public class PlayerKidController : MonoBehaviour {
 			{
 				flip();
 			}
-		}
 	}
 
 	void flip()
@@ -221,9 +219,8 @@ public class PlayerKidController : MonoBehaviour {
 
 	void FireBoomerang()
 	{
-		if (Time.time > nextFire)
+		if (CanShoot)
 		{
-			nextFire = Time.time + fireRate;
 			if (facingRight)
 			{
 				GameObject RightBoomerang = Instantiate(boomerang, handTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
@@ -234,8 +231,8 @@ public class PlayerKidController : MonoBehaviour {
 				GameObject LeftBoomerang = Instantiate(boomerang, handTip.position, Quaternion.Euler(new Vector3(0, 0, -180f)));
 				LeftBoomerang.GetComponent<BoomerangController>().facingRight = false;
 			}
-
 			shooting = true;
+			CanShoot = false;
 			ActiveAnim.SetBool("isShooting", shooting);
 		}
 	}

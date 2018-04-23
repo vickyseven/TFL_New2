@@ -25,32 +25,30 @@ public class BoomerangHit : MonoBehaviour {
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Shootable"))
             {
-                myBC.RemoveForce();
-            Instantiate(explosionEffect, transform.position, transform.rotation);
-            Destroy(gameObject);
-            if(other.tag == "Enemy")
-            {
-                EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
-                enemyDamage.addDamage(WeaponDamage);
-            }
-            }
-        
+//				myBC.RemoveForce();
+			    Instantiate(explosionEffect, transform.position, transform.rotation);
+				if(other.tag == "Enemy")
+					{
+						EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
+						enemyDamage.addDamage(WeaponDamage);
+					}
+			}
 
-        }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Shootable"))
-        {
-            myBC.RemoveForce();
-            Instantiate(explosionEffect, transform.position, transform.rotation);
-            Destroy(gameObject);
-            if (other.tag == "Enemy")
-            {
-                EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
-                enemyDamage.addDamage(WeaponDamage);
-            }
-        }
-    }
+
+	}
+	//    private void OnTriggerStay2D(Collider2D other)
+	//    {
+	//        if (other.gameObject.layer == LayerMask.NameToLayer("Shootable"))
+	//        {
+	//myBC.RemoveForce();
+	//		Instantiate(explosionEffect, transform.position, transform.rotation);
+	//        if (other.tag == "Enemy")
+	//        {
+	//EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
+	//enemyDamage.addDamage(WeaponDamage);
+	//}
+	//}
+	//}
 
 
 }
