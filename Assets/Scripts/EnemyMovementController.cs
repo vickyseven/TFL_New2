@@ -8,6 +8,8 @@ public class EnemyMovementController : MonoBehaviour {
     public float enemySpeed;
 	float CurrentSpeed = 0;
 	public bool MovesVertically;
+	public bool CanMove;
+	float StunTime;
 	Vector2 Direction;
 
     Animator enemyAnimator;
@@ -31,6 +33,7 @@ public class EnemyMovementController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		CanMove = true;
 		enemyAnimator = GetComponentInChildren<Animator>();
 		enemyRB = GetComponent<Rigidbody2D>();
 		if (MovesVertically == true) Direction = new Vector2(0, 1);
@@ -39,6 +42,8 @@ public class EnemyMovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (CanMove)
+		{
 		if(!MovesVertically && Time.time > nextFlipChance) {
             if (UnityEngine.Random.Range(0, 10) >=5) FlipFacing();
             nextFlipChance = Time.time + flipTime;
@@ -49,10 +54,13 @@ public class EnemyMovementController : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
-    }
-
-   
- 
+		}
+		else if (CanMove == false)
+		{
+			CurrentSpeed = 0f;
+			if (Time.time > StunTime + 1f) CanMove = true;
+		}
+	}
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player")
@@ -72,6 +80,7 @@ public class EnemyMovementController : MonoBehaviour {
         }
        
     }
+
     void OnTriggerStay2D(Collider2D other)
     {
 		if (other.tag == "Player")
@@ -116,5 +125,11 @@ public class EnemyMovementController : MonoBehaviour {
 			enemyGraphic.transform.localScale = new Vector3(facingX, enemyGraphic.transform.localScale.y, enemyGraphic.transform.localScale.z);
 			facingRight = !facingRight;
 		}
+	}
+
+	public void Stun()
+	{
+		CanMove = false;
+		StunTime = Time.time;
 	}
 }

@@ -31,6 +31,8 @@ public class BoomerangHit : MonoBehaviour {
 					{
 						EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
 						enemyDamage.addDamage(WeaponDamage);
+						EnemyMovementController EnemyControl = other.gameObject.GetComponentInParent<EnemyMovementController>();
+						EnemyControl.Stun();
 					}
 			}
 

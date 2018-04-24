@@ -10,46 +10,36 @@ public class SoundPuzzleController : MonoBehaviour {
 	int i = 0;
 	public AudioSource[] Sounds = new AudioSource [5];
 	public bool IsComplete = false;
-	bool SequencedListening;
+	bool SequenceListening;
 	float Entertime;
 	PlayerKidController PlayerContr;
 	int k = 0;
 	// Use this for initialization
 	void Start () {
-		SequencedListening = false;
+		SequenceListening = false;
 		SequenceLength = TargetSequence.Length - 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (SequencedListening && FirstListening)
+		if (SequenceListening && FirstListening)
 		{
 			PlayerContr.CanMove = false;
 			Sounds[TargetSequence[0]].Play();
-			Entertime = Time.time +0.5f;
+			Entertime = Time.time;
 			FirstListening = false;
 			k=1;
-				
-			//				if (k < SequenceLength) k++;
-			//				else if (k == SequenceLength)
-			//{
-			//SequencedListening = false;
-			//k = 0;
-			//PlayerContr.CanMove = true;
-			//return;
-			//}
 		}
-		else if (SequencedListening && Time.time > Entertime + 0.5f)
+		else if (SequenceListening && Time.time > Entertime + 0.5f)
 		{
 			Sounds[TargetSequence[k]].Play();
 			Entertime = Time.time;
 			if (k < SequenceLength) k++;
 			else if (k == SequenceLength)
 			{
-				SequencedListening = false;
 				k = 0;
 				PlayerContr.CanMove = true;
-				return;
+				SequenceListening = false;
 			}
 		}
 	}
@@ -59,7 +49,8 @@ public class SoundPuzzleController : MonoBehaviour {
 		if (other.tag == "Player")
 		{
 			PlayerContr = other.gameObject.GetComponent<PlayerKidController>();
-			Entertime = Time.time; SequencedListening = true;
+			Entertime = Time.time;
+			if (FirstListening) SequenceListening = true;
 		}
 	}
 
@@ -67,7 +58,7 @@ public class SoundPuzzleController : MonoBehaviour {
 	{
 		if (collision.tag == "Player")
 		{
-			SequencedListening = false;
+			SequenceListening = false;
 			FirstListening = true;
 		}
 	}
@@ -94,10 +85,10 @@ public class SoundPuzzleController : MonoBehaviour {
 			{
 				continue;
 			}
-		else i = 0; return;
+		else i = 0; k = 0; return;
 		}
 		IsComplete = true;
 		PlayerContr.CanMove = true;
-		Destroy(gameObject, 1.5f);
+		Destroy(gameObject, 0.5f);
 	}
 }

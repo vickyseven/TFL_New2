@@ -20,9 +20,9 @@ public class BoomerangController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-        myRB = GetComponent<Rigidbody2D>();
+		myRB = GetComponent<Rigidbody2D>();
 		PlayerRB = FindObjectOfType<PlayerKidController>().GetComponent<Rigidbody2D>();
-      //  isFacingRight = facingRight;
+		//isFacingRight = facingRight;
        
         SetDirection();
     }

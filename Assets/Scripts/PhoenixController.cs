@@ -25,7 +25,8 @@ public class PhoenixController : MonoBehaviour {
 		if(DHold.DialogueOver && GameContr.HasSmallPhoenix)
 		{
 			SmallPhoenixRecovered = true;
-			Destroy(gameObject, 2f);
+			GetComponent<Animator>().SetBool("Vanish", true);
+			Destroy(gameObject, 3f);
 		}
 	}
 }
