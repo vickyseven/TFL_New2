@@ -10,6 +10,12 @@ TextureImporter:
     21300006: flame_sprite_3
     21300008: flame_sprite_4
     21300010: flame_sprite_5
+    21300012: flame_sprite_6
+    21300014: flame_sprite_7
+    21300016: flame_sprite_8
+    21300018: flame_sprite_9
+    21300020: flame_sprite_10
+    21300022: flame_sprite_11
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -52,7 +58,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -120,11 +126,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 512
-        height: 512
+        y: 269.3333
+        width: 150
+        height: 134.66667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,12 +139,12 @@ TextureImporter:
       name: flame_sprite_1
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
-        width: 512
-        height: 512
+        x: 150
+        y: 269.3333
+        width: 150
+        height: 134.66667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +153,12 @@ TextureImporter:
       name: flame_sprite_2
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 512
-        height: 512
+        x: 300
+        y: 269.3333
+        width: 150
+        height: 134.66667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +167,12 @@ TextureImporter:
       name: flame_sprite_3
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 0
-        width: 512
-        height: 512
+        x: 450
+        y: 269.3333
+        width: 150
+        height: 134.66667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,12 +181,12 @@ TextureImporter:
       name: flame_sprite_4
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 512
-        height: 512
+        x: 0
+        y: 135.33333
+        width: 150
+        height: 134.66667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +195,96 @@ TextureImporter:
       name: flame_sprite_5
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 0
-        width: 512
-        height: 512
+        x: 150
+        y: 135.33333
+        width: 150
+        height: 134.66667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flame_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 135.33333
+        width: 150
+        height: 134.66667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flame_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 135.33333
+        width: 150
+        height: 134.66667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flame_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.3333282
+        width: 150
+        height: 134.66667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flame_sprite_9
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 1.3333282
+        width: 150
+        height: 134.66667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flame_sprite_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1.3333282
+        width: 150
+        height: 134.66667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flame_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1.3333282
+        width: 150
+        height: 134.66667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
