@@ -119,6 +119,7 @@ public class PlayerKidController : MonoBehaviour {
 		{
 			IsElementalAttacking = false;
 			ActiveAnim.SetBool("IsCasting", IsElementalAttacking);
+			ForwardCheck.GetComponent<ElementalAttacks>().FireAnim.SetBool("CastFire", false);
 		}
 
 
