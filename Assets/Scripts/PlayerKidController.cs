@@ -63,7 +63,6 @@ public class PlayerKidController : MonoBehaviour {
 
 		myRB = GetComponent<Rigidbody2D>();
 		myKidAnim = RedKid.GetComponent<Animator>();
-		//FOX
 		myFoxAnim = FoxKid.GetComponent<Animator>();
 		facingRight = true;
 		characterselect = 1;
@@ -73,6 +72,7 @@ public class PlayerKidController : MonoBehaviour {
 		RedKid.SetActive(true);
 		FoxKid.SetActive(false);
 		ActiveAnim = myKidAnim;
+		myKidAnim.Play("PlayerKidIdle");
 		CanMove = true;
 	}
 
@@ -119,6 +119,7 @@ public class PlayerKidController : MonoBehaviour {
 		{
 			IsElementalAttacking = false;
 			ActiveAnim.SetBool("IsCasting", IsElementalAttacking);
+			ForwardCheck.GetComponent<ElementalAttacks>().FireAnim.SetBool("CastFire", false);
 		}
 
 
@@ -127,41 +128,16 @@ public class PlayerKidController : MonoBehaviour {
 	void FixedUpdate()
 	{
 		//character select
-		if (Input.GetButtonDown("Change")&&CanChange)
+		if (Input.GetButtonDown("Change") && CanChange)
 		{
-			if (characterselect == 1)
-			{
-				characterselect = 2;
-			}
-			else if (characterselect == 2)
-			{
-				characterselect = 1;
-			}
-		}
-		if (characterselect == 1)
-		{
-			RedKid.SetActive(true);
-			FoxKid.SetActive(false);
-			ActiveAnim = myKidAnim;
-			myRB.mass = 1;
-			PlayerCollider.size = (new Vector2(1.2f,2.7f));
-			PlayerCollider.offset = (new Vector2(0f, -1.17f));
-		}
-		else if (characterselect == 2)
-		{
-			RedKid.SetActive(false);
-			FoxKid.SetActive(true);
-			ActiveAnim = myFoxAnim;
-			myRB.mass = 0.5f;
-			PlayerCollider.size = (new Vector2(0f, 0f));
-			PlayerCollider.offset = (new Vector2(0f, 0f));
+			ShapeShift();
 		}
 
 		//check if we are grounded - if not, we are falling
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckCircle, groundLayer);
 		ActiveAnim.SetBool("isGrounded", grounded);
 		ActiveAnim.SetFloat("verticalSpeed", myRB.velocity.y);
-
+		
 		//movement
 		if (!CanMove)
 			{
@@ -187,6 +163,30 @@ public class PlayerKidController : MonoBehaviour {
 			{
 				flip();
 			}
+	}
+
+	void ShapeShift()
+	{
+		if (characterselect == 2)
+		{
+			characterselect = 1;
+			RedKid.SetActive(true);
+			FoxKid.SetActive(false);
+			ActiveAnim = myKidAnim;
+			myRB.mass = 1;
+			PlayerCollider.size = (new Vector2(1.2f, 2.7f));
+			PlayerCollider.offset = (new Vector2(0f, -1.17f));
+		}
+		else if (characterselect == 1)
+		{
+			characterselect = 2;
+			RedKid.SetActive(false);
+			FoxKid.SetActive(true);
+			ActiveAnim = myFoxAnim;
+			myRB.mass = 0.5f;
+			PlayerCollider.size = (new Vector2(0f, 0f));
+			PlayerCollider.offset = (new Vector2(0f, 0f));
+		}
 	}
 
 	void flip()
