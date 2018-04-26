@@ -26,7 +26,7 @@ public class BoomerangHit : MonoBehaviour {
             if (other.gameObject.layer == LayerMask.NameToLayer("Shootable"))
             {
 //				myBC.RemoveForce();
-			    Instantiate(explosionEffect, transform.position, transform.rotation);
+				Instantiate(explosionEffect, transform.position, transform.rotation);
 				if(other.tag == "Enemy")
 					{
 						EnemyHealth enemyDamage = other.gameObject.GetComponent<EnemyHealth>();
