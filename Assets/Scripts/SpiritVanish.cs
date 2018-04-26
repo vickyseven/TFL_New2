@@ -27,6 +27,7 @@ public class SpiritVanish : MonoBehaviour {
 	{
 		IsOver = true;
 		gameObject.GetComponent<SpriteRenderer>().enabled = false;
+		gameObject.GetComponentInChildren<Collider2D>().enabled = false;
 		Instantiate(SpiritVanishFX, transform.position, transform.rotation);
 		Destroy(gameObject, 0.5f);
 	}

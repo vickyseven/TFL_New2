@@ -225,11 +225,13 @@ public class PlayerKidController : MonoBehaviour {
 			{
 				GameObject RightBoomerang = Instantiate(boomerang, handTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
 				RightBoomerang.GetComponent<BoomerangController>().facingRight = true;
+				GetComponent<KidHealth>().SurvivingBoomerang = RightBoomerang;
 			}
 			else if (!facingRight)
 			{
 				GameObject LeftBoomerang = Instantiate(boomerang, handTip.position, Quaternion.Euler(new Vector3(0, 0, -180f)));
 				LeftBoomerang.GetComponent<BoomerangController>().facingRight = false;
+				GetComponent<KidHealth>().SurvivingBoomerang = LeftBoomerang;
 			}
 			shooting = true;
 			CanShoot = false;

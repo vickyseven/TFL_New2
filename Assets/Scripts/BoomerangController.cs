@@ -64,6 +64,7 @@ public class BoomerangController : MonoBehaviour {
 		if (((facingRight && myRB.velocity.x < 0) || (!facingRight && myRB.velocity.x > 0)) && collision.gameObject.tag == "Player")
 		{
 			collision.GetComponent<PlayerKidController>().CanShoot = true;
+			collision.GetComponent<KidHealth>().SurvivingBoomerang = null;
 			Destroy(gameObject);
 		}
 	}

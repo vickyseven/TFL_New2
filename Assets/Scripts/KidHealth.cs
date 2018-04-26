@@ -7,6 +7,7 @@ public class KidHealth : MonoBehaviour {
 
 	public float maxHealth;
 	public GameObject deathFX;
+	public GameObject SurvivingBoomerang;
 	//	float DeathTime = 0f;
 	//	bool IsDead;
 	public float currentHealth = 70f;
@@ -63,7 +64,7 @@ public class KidHealth : MonoBehaviour {
 
 	public void makeDead() {
 		Instantiate(deathFX, transform.position, new Quaternion (0,160,0,0));
-		DestroyObject (FindObjectOfType<BoomerangController>().gameObject);
+		if (SurvivingBoomerang) Destroy(SurvivingBoomerang);
 		controlMovement.CanShoot = true;
 		//		IsDead = true;
 		//		DeathTime = Time.time;
