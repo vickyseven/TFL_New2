@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		StashedCharLoc = new Vector3(0, 0, 0);
 		StashedHealth = 70f;
+		IsInCave = false;
 	}
 	
 	// Update is called once per frame
@@ -46,9 +47,9 @@ public class GameController : MonoBehaviour {
 		Player.transform.position = PlayerLoc;
 	}
 
+
 	public void OutOfCave()
 	{
-
 		SetPlayerPosition(StashedCharLoc);
 		HasBeenInCave = false;
 		OutTheCave = false;

@@ -46,7 +46,7 @@ public class DialogueHolder : MonoBehaviour {
 		{
 			DMan = FindObjectOfType<DialogueManager>();
 			OnDialogueZone = true;
-			GetComponent<AudioSource>().Play();
+			if (GetComponent<AudioSource>()) GetComponent<AudioSource>().Play();
 			if (GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().enabled = true;
 		}
 	}
