@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour {
 
     public GameObject DBox;
     public Text DText;
+	public DialogueHolder DHolder;
 
     public bool dialogueActive = false;
 
@@ -37,7 +38,7 @@ public class DialogueManager : MonoBehaviour {
         {
             DBox.SetActive(false);
             dialogueActive = false;
-
+			DHolder.DialogueOver = true;
             currentLine = 0;
            thePlayer.CanMove = true;
         }

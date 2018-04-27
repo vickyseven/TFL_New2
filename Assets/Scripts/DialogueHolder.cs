@@ -23,9 +23,10 @@ public class DialogueHolder : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!DialogueOver && DialogueActive && !DMan.dialogueActive)
+		//		if (!DialogueOver && DialogueActive && !DMan.dialogueActive)
+		if (DialogueOver)
 		{
-			DialogueOver = true;
+//			DialogueOver = true;
 			DialogueActive = false;
 			ManualStart = false;
 		}
@@ -45,6 +46,7 @@ public class DialogueHolder : MonoBehaviour {
 		if (other.gameObject.tag == "Player")
 		{
 			DMan = FindObjectOfType<DialogueManager>();
+			DMan.DHolder = gameObject.GetComponent<DialogueHolder>();
 			OnDialogueZone = true;
 			if (GetComponent<AudioSource>()) GetComponent<AudioSource>().Play();
 			if (GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().enabled = true;
